@@ -225,7 +225,7 @@ static HorovodGlobalState horovod_global;
 #define TAG_NOTIFY 1
 
 // Stall-check warning time
-#define STALL_WARNING_TIME std::chrono::seconds(60)
+#define STALL_WARNING_TIME std::chrono::seconds(1500)
 
 // Store the MPIRequest for a name, and return whether the total count of
 // MPIRequests for that tensor is now equal to the MPI size (and thus we are
