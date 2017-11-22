@@ -1168,24 +1168,21 @@ void CheckForStalledTensors(HorovodGlobalState& state) {
                          STALL_WARNING_TIME)
                          .count()
                   << " seconds. ";
-        std::cerr << "This may indicate that different ranks are trying to "
-                     "submit different tensors or that only subset of ranks is "
-                     "submitting tensors, which will cause deadlock. ";
-        std::cerr << "Stalled ops: ";
         preamble = true;
       } else {
         std::cerr << ", ";
       }
-      std::cerr << tensor_name;
+      // std::cerr << tensor_name;
       std::cerr << " [ready ranks:";
       for (auto msg_iter = messages.begin(); msg_iter != messages.end();
            msg_iter++) {
         if (msg_iter == messages.begin()) {
           std::cerr << " ";
+          std::cerr << msg_iter->request_rank();
         } else {
-          std::cerr << ", ";
+          // std::cerr << ", ";
+          break;
         }
-        std::cerr << msg_iter->request_rank();
       }
       std::cerr << "]";
     }
